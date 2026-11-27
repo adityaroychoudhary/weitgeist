@@ -5,7 +5,7 @@ import { Inter } from "next/font/google";
 import { GeistMono } from "geist/font/mono";
 import { cn } from "@/lib/utils";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 export const metadata: Metadata = {
   title: "Weitgeist | Wikipedia Reimagined",
@@ -16,12 +16,20 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
       lang="en"
-      className={`${cn("h-full", "antialiased", "font-sans", inter.variable)} ${GeistMono.variable}`}
+      className={`${cn("h-full", "antialiased", "font-inter", inter.variable)} ${GeistMono.variable}`}
       suppressHydrationWarning
     >
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `try{if(localStorage.getItem("font")==="mono")document.documentElement.dataset.font="mono"}catch(e){}`,
+          }}
+        />
+      </head>
       <body className="bg-background text-foreground">
         <ThemeProvider
           attribute="class"
+          forcedTheme="dark"
           defaultTheme="system"
           enableSystem
           disableTransitionOnChange

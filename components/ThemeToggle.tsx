@@ -18,7 +18,13 @@ export function ModeToggle() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger
-        render={<Button variant="outline" size="icon" className="relative" />}
+        render={
+          <Button
+            variant="outline"
+            size="icon"
+            className="relative cursor-pointer"
+          />
+        }
       >
         <MoonIcon
           size={18}
